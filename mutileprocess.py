@@ -6,7 +6,7 @@
 # @File    : mutileprocess.py
 # @Software: PyCharm
 
-from multiprocessing import Process,Pool,Queue
+from multiprocessing import Process,Pool,Queue,cpu_count,active_children
 import os,time,random,subprocess
 
 #子进程要执行的代码
@@ -35,6 +35,9 @@ def read(q):
         value = q.get(True)
         print("Get %s from queue." %value)
 
+def process(num):
+    time.sleep(num)
+    print('Process',num)
 
 if __name__ == "__main__":
     print('Parent process %s.' % os.getpid())
@@ -56,17 +59,27 @@ if __name__ == "__main__":
     # r = subprocess.call(['nslookup', 'www.python.org'])
     # print('Exit code:', r)
     #进程间通信  使用Queue
-    q = Queue()
-    pw = Process(target=write,args=(q,))
-    pr = Process(target=read,args=(q,))
-
-    pw.start()
-    pr.start()
-
-    pw.join()
+    # q = Queue()
+    # pw = Process(target=write,args=(q,))
+    # pr = Process(target=read,args=(q,))
+    #
+    # pw.start()
+    # pr.start()
+    #
+    # pw.join()
 
     #pr进程是死循环，无法等待期结束，所以使用 terminate
-    pr.terminate()
+    # pr.terminate()
+
+    for i in range(5):
+        p = Process(target=process, args=(i,))
+        p.start()
+
+    print('CPU number:' + str(cpu_count()))
+    for p in active_children():
+        print('Child process name: ' + p.name + ' id: ' + str(p.pid))
+
+    print('Process Ended')
 
 
 
