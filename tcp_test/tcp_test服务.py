@@ -31,10 +31,11 @@ def tcplink(sock,addr):
     sock.close()
     print('Connection from %s:%s closed.' % addr)
 
-while True:
-    socket,addr = s.accept()
+if __name__ == '__main__':
+    while True:
+        socket, addr = s.accept()
 
-    #创建新线程处理Tcp连接
-    t = threading.Thread(target=tcplink,args=(socket,addr))
+        # 创建新线程处理Tcp连接
+        t = threading.Thread(target=tcplink, args=(socket, addr))
 
-    t.start()
+        t.start()
