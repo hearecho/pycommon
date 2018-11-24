@@ -31,16 +31,17 @@ print(dd['1'])
 print(dd['2'])
 
 #orderedDict 有序的词典 按照插入的顺序
-
+'''
+    3.6之后一般创建的字典也是有序的
+'''
 d = dict([('a',1),('b',2),('c',3)])
 print("无序的字典:",d)
 od = OrderedDict([('a',1),('c',2),('b',3)])
-print("有序的字典:",od) #有错误
+print("有序的字典:",od)
 #实现先进先出
 
 #Counter 计数器
 c = Counter()
 for ch in 'programing':
     c[ch] = c[ch] + 1
-
 print(c)

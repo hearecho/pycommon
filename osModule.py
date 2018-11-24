@@ -5,3 +5,7 @@
 # @Site    : 
 # @File    : osModule.py
 # @Software: PyCharm
+import os
+
+if __name__ == '__main__':
+    os.system("python schedule/scheduleDemo-1.py")

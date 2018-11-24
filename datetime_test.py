@@ -7,6 +7,7 @@
 # @Software: PyCharm
 
 from datetime import datetime,timedelta
+import time
 
 #-----------*返回当前时间*------------
 now = datetime.now()
@@ -18,6 +19,7 @@ print(dt)
 
 #-----------*datetime转换为timestamp*-
 print(now.timestamp())
+print(time.time())
 
 #-----------*timestamp转换为datetime*-
 #utc + 8 等于本地时间 即 北京时间
